@@ -53,7 +53,7 @@ import { useNavigate } from 'react-router-dom';
   
   
     return (
-      <Box position={"sticky"} top={"0"} >
+      <Box position={"sticky"} zIndex={"overlay"} top={"0"} >
         <Flex
           bg={useColorModeValue('white', 'gray.800')}
           color={useColorModeValue('gray.600', 'white')}

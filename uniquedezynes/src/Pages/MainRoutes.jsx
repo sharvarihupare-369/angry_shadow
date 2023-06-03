@@ -10,6 +10,7 @@ import { Women } from './Women'
 import { SingleProduct } from './SingleProduct'
 import { Wishlist } from './Wishlist'
 import { Bag } from './Bag'
+import { Payment } from './Payment'
 
 export const MainRoutes = () => {
   return (
@@ -24,6 +25,7 @@ export const MainRoutes = () => {
         {/* <Route path='/men/:id' element={<Men/>} /> */}
         <Route path='/women' element={<Women/>} />
         <Route path='/bag' element={<Bag/>} />
+        <Route path='/payment' element={<Payment/>} />
     </Routes>
   </Box>
   )

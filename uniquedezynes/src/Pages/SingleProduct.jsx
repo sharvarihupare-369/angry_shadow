@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProductsSingleMen } from "../Redux/Products/action";
@@ -22,19 +22,23 @@ import { FiHeart } from "react-icons/fi";
 import { BsFillCircleFill, BsStarFill, BsTruck } from "react-icons/bs";
 import { CgDetailsMore } from "react-icons/cg";
 import { RiStarSLine } from "react-icons/ri";
+import { GlobalContext } from "../Contexts/GlobalContextProvider";
 // import AOS from 'aos';
 
 export const SingleProduct = () => {
   const [singleData, setSingleData] = useState({});
+  const {paramVal,setParamVal} = useContext(GlobalContext)
 
   const { id } = useParams();
   console.log(id);
 
+
+
   // const dispatch = useDispatch()
 
   useEffect(() => {
-    getProductsSingleMen(setSingleData, id);
-  }, [id]);
+    getProductsSingleMen(setSingleData, id,paramVal);
+  }, [id,paramVal]);
 
   // useEffect(() => {
   //   AOS.init({ delay: 300 });
@@ -160,7 +164,7 @@ export const SingleProduct = () => {
             </Flex>
             <Box mt="10px">
               <Flex alignItems={"center"}>
-                {sizes.map((el) => {
+                {/* {sizes.map((el) => {
                   return (
                     <Box
                       w="55px"
@@ -178,7 +182,7 @@ export const SingleProduct = () => {
                       {el}
                     </Box>
                   );
-                })}
+                })} */}
               </Flex>
             </Box>
           </Box>

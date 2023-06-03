@@ -1,24 +1,38 @@
 import { Box, Button, Flex, HStack, Select, Heading,Text } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Sidebar } from '../components/Sidebar'
 import { Men } from './Men'
 import { useDispatch } from 'react-redux'
 import { getProductsMen } from '../Redux/Products/action'
 import { Pagination } from '../components/Pagination'
 import { BsChevronDown } from 'react-icons/bs'
+import { GlobalContext } from '../Contexts/GlobalContextProvider'
+import { useSearchParams } from 'react-router-dom'
 
 
 
 
 export const Products = () => {
+  const [searchParams] = useSearchParams()
   const [page,setPage] = useState(1)
   const [totalPages,setTotalPages] = useState(0)
   const limit = 14;
   const dispatch = useDispatch();
+  const {paramVal,setParamVal} = useContext(GlobalContext)
 
+  let paramObj = {
+    params : {
+      categories : searchParams.getAll('categories'),
+      gender : searchParams.getAll('gender'),
+      color : searchParams.getAll('color'),
+      brand : searchParams.getAll('brand')
+    }
+  }
+
+  // console.log(page)
   useEffect(() => {
-    dispatch(getProductsMen(setTotalPages,page));
-  }, [page]);
+    dispatch(getProductsMen(setTotalPages,page, paramVal || 'women' , paramObj));
+  }, [page,paramVal,searchParams]);
 
   useEffect(()=>{
     window.scrollTo({top:0 , left:0, behavior:"smooth"})

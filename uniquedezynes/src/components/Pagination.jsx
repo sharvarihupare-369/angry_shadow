@@ -4,7 +4,7 @@ import React from 'react'
 export const Pagination = ({totalPages,setPage,limit,page}) => {
   
   let roundPage = Math.ceil(totalPages/limit)
-  console.log(roundPage)
+  // console.log(roundPage)
   
   return (
       <Flex gap="5px" >

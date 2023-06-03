@@ -1,9 +1,10 @@
 import { GET_PRODUCT_SUCCESS_MEN, PRODUCT_FAILURE, PRODUCT_REQUEST } from "./actionTypes"
 import axios from 'axios'
 
-export const getProductsMen = (setTotalPages,page) => (dispatch) => {
+export const getProductsMen = (setTotalPages,page,value,obj) => (dispatch) => {
+    // console.log(page)
     dispatch({type:PRODUCT_REQUEST})
-    axios.get(`https://rich-gold-boa-fez.cyclic.app/men?_limit=14&_page=${page}`).then((res)=>{
+    axios.get(`https://rich-gold-boa-fez.cyclic.app/products?_limit=14&_page=${page}`,obj).then((res)=>{
         // console.log(res.headers["x-total-count"])    
         // console.log(res)
         // let pages = res.headers['x-total-count'];
@@ -16,10 +17,10 @@ export const getProductsMen = (setTotalPages,page) => (dispatch) => {
 
 
 
-export const getProductsSingleMen = (setsingleData,id) => {
+export const getProductsSingleMen = (setsingleData,id,value) => {
   
-    axios.get(`https://rich-gold-boa-fez.cyclic.app/men/${id}`).then((res)=>{
-        console.log(res.data)
+    axios.get(`https://rich-gold-boa-fez.cyclic.app/products/${id}`).then((res)=>{
+            console.log(res.data)
             setsingleData(res.data)
       
     }).catch(()=>{
