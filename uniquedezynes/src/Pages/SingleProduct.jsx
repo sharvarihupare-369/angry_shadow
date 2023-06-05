@@ -15,6 +15,7 @@ import {
   InputRightElement,
   Button,
   Input,
+  Select,
 } from "@chakra-ui/react";
 import { FaStar } from "react-icons/fa";
 import { HiOutlineShoppingBag } from "react-icons/hi";
@@ -27,23 +28,24 @@ import { GlobalContext } from "../Contexts/GlobalContextProvider";
 
 export const SingleProduct = () => {
   const [singleData, setSingleData] = useState({});
-  const {paramVal,setParamVal} = useContext(GlobalContext)
-
+  // const {paramVal,setParamVal} = useContext(GlobalContext)
+  // const [arr,setArr] = useState([])
+  
+  const [selectedSize, setSelectedSize] = useState('');
+  
+  
   const { id } = useParams();
-  console.log(id);
-
-
-
+  // console.log(id);
+  
+  console.log(singleData)
+  
   // const dispatch = useDispatch()
-
+  
   useEffect(() => {
-    getProductsSingleMen(setSingleData, id,paramVal);
-  }, [id,paramVal]);
-
-  // useEffect(() => {
-  //   AOS.init({ delay: 300 });
-  // }, []);
-
+    getProductsSingleMen(setSingleData, id);
+  }, [id]);
+  
+  
   const {
     brand,
     categories,
@@ -52,7 +54,7 @@ export const SingleProduct = () => {
     description,
     gender,
     discount,
-    images,
+  
     price,
     rating,
     sizes,
@@ -61,21 +63,53 @@ export const SingleProduct = () => {
     off_price,
   } = singleData;
 
+
+  const handleAdd = () => {
+    if (selectedSize === '') {
+      alert('Please select a size!');
+      return;
+    }
+
+    let productData = {
+      title,
+      brand,
+      color,
+      rating,
+      price,
+      size:selectedSize
+    }
+    console.log(productData)
+   }
+
+  const handleSize = (el) => {
+    // setSelectedSize(e.target.value)
+    console.log(el)
+    
+  }
+
+  // const {images} = singleData
+  // const {image1,image2} = images
+
+  // const {images:{image1}} = singleData
+  // console.log(image1)
+ 
   return (
     <Box>
       <Flex justifyContent={"space-evenly"} mt="30px">
         <Box w="60%">
-          {/* <VStack>
+          <VStack>
             <HStack>
-              <Image w="300px" src={singleData.images["image1"]} />
-              <Image w="300px" src={singleData.images["image2"]} />
+              {/* <Image w="300px" src={singleData.images["image1"]} /> */}
+              {/* <Image w="300px" src={image1} /> */}
+              {/* <Image w="300px" src={singleData.images["image2"]} /> */}
+              {/* <Image w="300px" src={image2} /> */}
             </HStack>
-            <HStack>
+            {/* <HStack> */}
 
-            <Image w="300px" src={singleData.images["image3"]} />
-            <Image w="300px" src={singleData.images["image4"]} />
-            </HStack>
-          </VStack> */}
+            {/* <Image w="300px" src={singleData.images["image3"]} /> */}
+            {/* <Image w="300px" src={singleData.images["image4"]} /> */}
+            {/* </HStack> */}
+          </VStack>
         </Box>
         <Box>
           <Box w="40%" p="10px">
@@ -164,7 +198,7 @@ export const SingleProduct = () => {
             </Flex>
             <Box mt="10px">
               <Flex alignItems={"center"}>
-                {/* {sizes.map((el) => {
+                {sizes?.map((el) => {
                   return (
                     <Box
                       w="55px"
@@ -177,13 +211,24 @@ export const SingleProduct = () => {
                       borderRadius={"50%"}
                       _hover={{ border:"1px solid #D14D72"}}
                       border={"1px solid gray"}
-                     
+                     onClick={(el)=>handleSize(el)}
                     >
                       {el}
                     </Box>
                   );
-                })} */}
+                })}
               </Flex>
+
+              {/* <Select value={selectedSize} onChange={handleSize} >
+                <option value={""}>Select Size</option>
+                {
+                 sizes?.map((el) => {
+                  return (
+                    <option key={el} value={el}>{el}</option>
+                  )
+                 })
+              } */}
+              {/* </Select> */}
             </Box>
           </Box>
 
@@ -194,6 +239,7 @@ export const SingleProduct = () => {
                 bg="#D14D72"
                 _hover={{ bg: "#d65f81", color: "white" }}
                 color={"white"}
+                onClick={handleAdd}
               >
                 <HStack>
                   <HiOutlineShoppingBag />

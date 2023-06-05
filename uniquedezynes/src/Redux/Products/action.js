@@ -17,10 +17,10 @@ export const getProductsMen = (setTotalPages,page,value,obj) => (dispatch) => {
 
 
 
-export const getProductsSingleMen = (setsingleData,id,value) => {
+export const getProductsSingleMen = (setsingleData,id) => {
   
     axios.get(`https://rich-gold-boa-fez.cyclic.app/products/${id}`).then((res)=>{
-            console.log(res.data)
+            // console.log(res.data)
             setsingleData(res.data)
       
     }).catch(()=>{
