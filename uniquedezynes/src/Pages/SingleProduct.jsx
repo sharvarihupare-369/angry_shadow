@@ -186,7 +186,7 @@ export const SingleProduct = () => {
           <br />
           <Box>
             <Flex alignItems={"center"}>
-              <Text fontWeight={"700"}>SELECT SIZE</Text>
+              <Text fontWeight={"700"} textTransform={"uppercase"}>SeLEct SIZE</Text>
               <Text
                 ml="40px"
                 fontWeight={"600"}
